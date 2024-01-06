@@ -1,19 +1,33 @@
 import React, { lazy, Suspense } from 'react';
 
-// Define a component using React.lazy
-const LazyLoadedComponent = lazy(() => import('./LazyLoadedComponent'))
+// Lazy-loaded component
+const LazyComponent = lazy(() => import('./component/LazyComponent'));
+
+// Non-lazy-loaded component
+import NonLazyComponent from './component/NonLazyComponent';
 
 const App = () => {
   return (
     <div>
-      <h1>My App</h1>
+      <h1>Lazy Loading Example</h1>
+
+      {/* Non-lazy-loaded component */}
+      <NonLazyComponent />
+
+      <hr />
+
+      {/* Lazy-loaded component wrapped in Suspense */}
       {/* Use Suspense to handle loading state */}
       <Suspense fallback={<div>Loading...</div>}>
-        {/* Lazy load the component */}
-        <LazyLoadedComponent />
+        <LazyComponent />
       </Suspense>
     </div>
   );
 };
 
 export default App;
+
+
+
+
+
